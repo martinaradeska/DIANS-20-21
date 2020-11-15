@@ -1,9 +1,0 @@
-﻿osmfilter macedonia-latest2.osm --keep="tourism=hotel" | osmconvert64-0.8.8p.exe - --all-to-nodes --csv="@id @lon @lat name" --csv-headline --csv-separator="," -o="hotels.csv"
-osmfilter macedonia-latest2.osm --keep="shop=hairdresser" | osmconvert64-0.8.8p.exe - --all-to-nodes --csv="@id @lon @lat name" --csv-headline --csv-separator="," -o="hairdresser.csv"
-osmfilter macedonia-latest2.osm --keep="shop=clothes" | osmconvert64-0.8.8p.exe - --all-to-nodes --csv="@id @lon @lat name" --csv-headline --csv-separator="," -o="cloths.csv"
-osmfilter macedonia-latest2.osm --keep="shop=bakery" | osmconvert64-0.8.8p.exe - --all-to-nodes --csv="@id @lon @lat name" --csv-headline --csv-separator="," -o="bakery.csv"
-osmfilter macedonia-latest2.osm --keep="amenity=cafe" | osmconvert64-0.8.8p.exe - --all-to-nodes --csv="@id @lon @lat name" --csv-headline --csv-separator="," -o="cafee.csv"
-
-Овие наредби се извршуваат во command prompt на Windows. 
-Најпрво треба да се навигира до фолдерот каде што се симнати osmfilter.exe, 
-osmconvert64-0.8.p.exe и macedonia-latest2.osm, а потоа да се извршат наредбите.
