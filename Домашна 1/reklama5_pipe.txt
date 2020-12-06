@@ -1,5 +1,70 @@
 # gi zemame linkovite od oglasite na reklama 5 za dukjani
 for i in {1..5}
 do
-curl "https://reklama5.mk/Search?q=&city=1&sell=0&sell=1&buy=0&buy=1&rent=0&rent=1&includeforrent=0&includeforrent=1&trade=0&trade=1&includeOld=0&includeOld=1&includeNew=0&includeNew=1&f57_from=&f57_to=&f58_from=&f58_to=&priceFrom=&priceTo=&f59=&private=0&company=0&page=$i&SortByPrice=2&zz=1&cat=167" | grep "10px;\"><a href=\"/AdDetails?ad" |sed "s/<a href/\\n<a href/g" | sed 's/\"/\"><\/a>\n/2' | grep href |uniq | sed "s/<a href=\"/https\:\/\/reklama5/" | sed "s/.$//" | sed "s/.$//" | sed "s/.$//" | sed "s/.$//" | sed "s/.$//" | sed "s/.$//"
-done > 5pages_reklama5_dukjani.txt
+curl "https://reklama5.mk/Search?q=&city=1&sell=0&sell=1&buy=0&buy=1&rent=0&rent=1&includeforrent=0&includeforrent=1&trade=0&trade=1&includeOld=0&includeOld=1&includeNew=0&includeNew=1&f57_from=&f57_to=&f58_from=&f58_to=&priceFrom=&priceTo=&f59=&private=0&company=0&page=$i&SortByPrice=2&zz=1&cat=167" | 
+grep "10px;\"><a href=\"/AdDetails?ad" |
+sed "s/<a href/\\n<a href/g" | 
+sed 's/\"/\"><\/a>\n/2' | 
+grep href |
+uniq | 
+sed "s/<a href=\"/https\:\/\/reklama5.mk/" | 
+sed "s/.$//" | 
+sed "s/.$//" | 
+sed "s/.$//" | 
+sed "s/.$//" | 
+sed "s/.$//" | 
+sed "s/.$//"
+done > reklama5.txt ;
+
+# gi vadime koordinatite od linkovite vo koordinati.txt
+for i in $(cat reklama5.txt)
+do 
+curl $i | 
+grep "http\:\/\/maps\.google" | 
+grep -o '?q.*class' | 
+sed 's/^.*=//' |
+sed 's/\" class.*//' 
+done > koordinati.txt ;
+
+
+#Gi proveruvame linkovite od reklama5.txt za dali imaat koordinati koi se poklopuvaa i gi briseme istite  
+echo "_ime,_kvadratura,_lat,_lon,_Telefon,_tipOglas,_Cena" > Lokali_reklama5.csv
+Eden="1";
+C=1;
+for i in $(cat reklama5.txt);
+do
+Proveri[$C]=$(sed $C'!d' koordinati.txt);
+Brojka=0
+for var in "${Proveri[@]}";
+do
+if [[ $var == ${Proveri[$C]} ]]; then
+Brojka=$((Brojka+1));
+fi
+done
+if [[ $Brojka == $Eden ]]; then
+Lokal=$(curl $i)
+Koordinati=${Proveri[$C]};
+Kvadratura=0;
+Telefon="nema";
+tipOglas="Се продава";
+#
+#zapisuvame informacii za tie sto ima validna lokacija
+#
+Kvadratura=$(echo $Lokal | grep "Квадратура" | sed 's/ m&#178.*//' | sed 's/^.*=//'| sed 's/^.*>//');
+Telefon=$(echo $Lokal | grep "telefon\.png" | sed 's/<\/label><\/p.*//' | sed 's/^.*>//');
+tipOglas=$(curl $i | grep "Вид на оглас" | sed 's/^.*adValue\">//' | sed 's/<.*//');
+Ime=$( curl $i | grep "adDetails title" | sed 's/^.*margin\">//' | sed 's/<.*//');
+Cena=$( curl $i | grep -A1 "class=\"adDetailPrice\"" | grep -v  "class=\"adDetailPrice\"" | sed 's/<\/span.*//');
+C=$((C+1));
+echo $Ime","$Kvadratura","$Koordinati","$Telefon","$tipOglas","$Cena
+else 
+C=$((C+1));
+fi
+done >> Lokali_reklama5.csv
+
+
+
+
+
+
+
