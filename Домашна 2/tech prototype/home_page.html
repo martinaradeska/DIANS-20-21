@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>За нас</title>
+    <link rel="stylesheet" href="izgled.css">
+    <script src="jquery/jquery.js"></script>
+    <script src="jquery/jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery/jquery-ui.css">
+    <script>
+        $( function()
+        {
+            $( "#selectable" ).selectable();
+        } );
+    </script>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="home_page.html">За нас</a></li>
+        <li><a href="map.html">Мапа</a></li>
+    </ul>
+</nav>
+<br>
+<br>
+<div id="intro">
+    <div>
+        <h4>Добредојдовте на нашиот сајт</h4>
+    </div>
+    <div>
+        <p>Овој сајт претставува едноставно пребарување на локации за хотели, локали, барови,
+        пекари, продавници за облека, како и фризерски салони кои се наоѓаат на територијата на
+        град Скопје</p>
+    </div>
+</div>
+</div>
+<div id="desno">
+    <div id="lokali">
+        <ul id="selectable">
+            <li>Хотели</li>
+            <li>Кафулиња</li>
+            <li>Пекари</li>
+            <li>Фризерски салони</li>
+            <li>Продавници за облека</li>
+        </ul>
+        <div id="skopje">
+            <img src="images/skopje.png" width="300px" height="200px">
+        </div>
+    </div>
+</div>
+</body>
+</html>

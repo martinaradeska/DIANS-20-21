@@ -1,0 +1,136 @@
+body
+{
+    background-color: #ffbfc9;
+}
+nav
+{
+    width: 80%;
+    height: 100px;
+    background-color: lightsteelblue;
+    position: relative;
+    border: 1px solid indianred;
+    margin: 2px;
+    margin-left: 145px;
+}
+nav ul
+{
+    list-style-type: none;
+    margin-top: 20px;
+    position: absolute;
+    top: 20px;
+    left: 350px;
+}
+nav ul li
+{
+    display: inline;
+    margin-top: 10px;
+}
+nav li a
+{
+    color: crimson;
+    border: 2px solid crimson;
+    text-decoration: underline;
+    font-size: 20px;
+    font-family: 'PT Sans', Arial, sans-serif;
+    padding: 15px;
+    margin-top: 100px;
+    margin-left: 80px;
+}
+body
+{
+    position: relative;
+}
+
+.mapouter
+{
+    position: absolute;
+    left: 145px;
+}
+
+#intro
+{
+    font-family: 'PT Sans', Arial, sans-serif;
+    color: darkslateblue;
+    width: 520px;
+    margin-left: 300px;
+    position: relative;
+}
+
+#intro h4
+{
+    font-size: 28px;
+    text-shadow: lightsteelblue;
+    position: absolute;
+    left: 20px;
+    top: 5px;
+    font-style: italic;
+}
+
+#intro p
+{
+    font-size: 22px;
+    position: absolute;
+    top: 100px;
+}
+
+body
+{
+    position: relative;
+}
+
+#desno
+{
+    position: absolute;
+    left: 950px;
+    top: 170px;
+}
+
+#desno ul
+{
+    list-style-type: none;
+}
+
+#desno #lokali ul li
+{
+    font-size: 20px;
+    text-decoration: underline;
+    font-family: 'PT Sans', Arial, sans-serif;
+    margin: 2px;
+    padding: 4px;
+    color: crimson;
+    cursor: pointer;
+}
+
+#mapa
+{
+    width: 1000px;
+}
+
+#selectable .ui-selecting
+{
+    background: #FECA40;
+}
+
+#selectable .ui-selecting
+{
+    background: #FECA40;
+}
+
+#selectable .ui-selected
+{
+    background: #F39814; color: white;
+}
+
+#pregled
+{
+    width: 650px;
+    color: darkslateblue;
+    text-align: center;
+    font-size: 18px;
+    margin-left: 152px;
+    font-family: 'PT Sans', Arial, sans-serif;
+}
+
+
+
+
