@@ -188,9 +188,14 @@
     <Compile Include="Migrations\202012191431223_N-M_relacija_users_lokali.Designer.cs">
       <DependentUpon>202012191431223_N-M_relacija_users_lokali.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012191528550_Category_za_Lokal1.cs" />
+    <Compile Include="Migrations\202012191528550_Category_za_Lokal1.Designer.cs">
+      <DependentUpon>202012191528550_Category_za_Lokal1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUserReklama5_Lokal.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Lokal.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -295,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012191431223_N-M_relacija_users_lokali.resx">
       <DependentUpon>202012191431223_N-M_relacija_users_lokali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012191528550_Category_za_Lokal1.resx">
+      <DependentUpon>202012191528550_Category_za_Lokal1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
