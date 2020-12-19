@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -112,12 +118,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -169,7 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KlientsController.cs" />
+    <Compile Include="Controllers\KategoriiController.cs" />
     <Compile Include="Controllers\LokalsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Reklama5_LokalController.cs" />
@@ -180,14 +180,21 @@
     <Compile Include="Migrations\202012181846479_Initial.Designer.cs">
       <DependentUpon>202012181846479_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012191420259_Izbrisan_Klient_Model.cs" />
+    <Compile Include="Migrations\202012191420259_Izbrisan_Klient_Model.Designer.cs">
+      <DependentUpon>202012191420259_Izbrisan_Klient_Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012191431223_N-M_relacija_users_lokali.cs" />
+    <Compile Include="Migrations\202012191431223_N-M_relacija_users_lokali.Designer.cs">
+      <DependentUpon>202012191431223_N-M_relacija_users_lokali.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationUserReklama5_Lokal.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Klient.cs" />
     <Compile Include="Models\Lokal.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Reklama5_Lokal.cs" />
-    <Compile Include="Models\Reklama5_LokalKlient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -247,11 +254,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Klients\Create.cshtml" />
-    <Content Include="Views\Klients\Delete.cshtml" />
-    <Content Include="Views\Klients\Details.cshtml" />
-    <Content Include="Views\Klients\Edit.cshtml" />
-    <Content Include="Views\Klients\Index.cshtml" />
     <Content Include="Views\Lokals\Create.cshtml" />
     <Content Include="Views\Lokals\Delete.cshtml" />
     <Content Include="Views\Lokals\Details.cshtml" />
@@ -262,6 +264,11 @@
     <Content Include="Views\Reklama5_Lokal\Details.cshtml" />
     <Content Include="Views\Reklama5_Lokal\Edit.cshtml" />
     <Content Include="Views\Reklama5_Lokal\Index.cshtml" />
+    <Content Include="Views\Kategorii\Cafee.cshtml" />
+    <Content Include="Views\Kategorii\Bakeries.cshtml" />
+    <Content Include="Views\Kategorii\Hotels.cshtml" />
+    <Content Include="Views\Kategorii\Hairdressers.cshtml" />
+    <Content Include="Views\Kategorii\Clothes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,6 +289,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012181846479_Initial.resx">
       <DependentUpon>202012181846479_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012191420259_Izbrisan_Klient_Model.resx">
+      <DependentUpon>202012191420259_Izbrisan_Klient_Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012191431223_N-M_relacija_users_lokali.resx">
+      <DependentUpon>202012191431223_N-M_relacija_users_lokali.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

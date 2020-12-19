@@ -14,7 +14,7 @@ namespace LocalsScout.Models
     {
         public Reklama5_Lokal()
         {
-            Go_gledaat = new List<Klient>();
+            Korisnici = new List<ApplicationUser>();
         }
         [Key]
         public int ID { get; set; }
@@ -25,6 +25,6 @@ namespace LocalsScout.Models
         public string Tel { get; set; }
         public LokalType Tip_oglas { get; set; }
         public string Cena { get; set; }
-        public virtual ICollection<Klient> Go_gledaat { get; set; }
+        public virtual ICollection<ApplicationUser> Korisnici { get; set; }
     }
 }
