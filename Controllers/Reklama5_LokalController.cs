@@ -36,6 +36,7 @@ namespace LocalsScout.Controllers
         }
 
         // GET: Reklama5_Lokal/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +60,7 @@ namespace LocalsScout.Controllers
         }
 
         // GET: Reklama5_Lokal/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +92,7 @@ namespace LocalsScout.Controllers
         }
 
         // GET: Reklama5_Lokal/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
