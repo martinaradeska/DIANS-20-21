@@ -69,7 +69,7 @@
 
     </dl>
     <div class="mapa">
-        <iframe src="https://maps.google.com/maps?q=@Model.Latitude, @Model.Longitude&z=15&output=embed" width="360" height="270" frameborder="0" style="border:0"></iframe>
+        <iframe style="width: 80%; height: 300px;" src="https://maps.google.com/maps?q=@Model.Latitude, @Model.Longitude&z=15&output=embed" width="360" height="270" frameborder="0" style="border:0"></iframe>
     </div>
     <div></div>
     @using (Html.BeginForm())
@@ -82,3 +82,4 @@
         </div>
     }
 </div>
+
