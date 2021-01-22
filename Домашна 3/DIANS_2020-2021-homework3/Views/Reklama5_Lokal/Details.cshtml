@@ -1,0 +1,78 @@
+﻿@model LocalsScout.Models.Reklama5_Lokal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали за избраниот локал</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kvadratura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kvadratura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tip_oglas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tip_oglas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+
+    </dl>
+</div>
+<div class="mapa">
+    <iframe  style="width: 80%; height: 300px;" src="https://maps.google.com/maps?q=@Model.Latitude, @Model.Longitude&z=15&output=embed" width="360" height="270" frameborder="0" style="border:0"></iframe>
+</div>
+<div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
