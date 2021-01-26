@@ -192,6 +192,26 @@
     <Compile Include="Migrations\202012191528550_Category_za_Lokal1.Designer.cs">
       <DependentUpon>202012191528550_Category_za_Lokal1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101261241150_kategorii.cs" />
+    <Compile Include="Migrations\202101261241150_kategorii.designer.cs">
+      <DependentUpon>202101261241150_kategorii.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101261606384_user_lokali_vo_db.cs" />
+    <Compile Include="Migrations\202101261606384_user_lokali_vo_db.designer.cs">
+      <DependentUpon>202101261606384_user_lokali_vo_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101261621140_lokali_useri.cs" />
+    <Compile Include="Migrations\202101261621140_lokali_useri.designer.cs">
+      <DependentUpon>202101261621140_lokali_useri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101261625433_lokali_user1.cs" />
+    <Compile Include="Migrations\202101261625433_lokali_user1.designer.cs">
+      <DependentUpon>202101261625433_lokali_user1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101261630549_lokali_useri2.cs" />
+    <Compile Include="Migrations\202101261630549_lokali_useri2.designer.cs">
+      <DependentUpon>202101261630549_lokali_useri2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUserReklama5_Lokal.cs" />
@@ -277,6 +297,8 @@
     <Content Include="Views\Kategorii\Hotels.cshtml" />
     <Content Include="Views\Kategorii\Hairdressers.cshtml" />
     <Content Include="Views\Kategorii\Clothes.cshtml" />
+    <Content Include="Views\Reklama5_Lokal\indexAd.cshtml" />
+    <Content Include="Views\Reklama5_Lokal\Izbrisi.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -304,6 +326,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012191528550_Category_za_Lokal1.resx">
       <DependentUpon>202012191528550_Category_za_Lokal1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101261241150_kategorii.resx">
+      <DependentUpon>202101261241150_kategorii.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101261606384_user_lokali_vo_db.resx">
+      <DependentUpon>202101261606384_user_lokali_vo_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101261621140_lokali_useri.resx">
+      <DependentUpon>202101261621140_lokali_useri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101261625433_lokali_user1.resx">
+      <DependentUpon>202101261625433_lokali_user1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101261630549_lokali_useri2.resx">
+      <DependentUpon>202101261630549_lokali_useri2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

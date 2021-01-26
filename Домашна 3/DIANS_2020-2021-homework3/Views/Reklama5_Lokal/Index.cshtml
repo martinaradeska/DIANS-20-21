@@ -5,9 +5,9 @@
 }
 
 <h2>Локали што се издаваат и продаваат во Скопје</h2>
-
+<h4>Вкупниот број на локали е @ViewBag.reklama_5, а вие имате избрано @ViewBag.dolzina</h4>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Избриши избрани локали", "Izbrisi")
 </p>
 <table class="table">
     <tr>
@@ -36,34 +36,37 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kvadratura)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tip_oglas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cena)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Kvadratura)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Longitude)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Latitude)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tel)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tip_oglas)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cena)
+    </td>
+    <td>
+        @Html.ActionLink("ИЗБЕРИ ЛОКАЛ", "DodadiLokal", new { id = item.ID }) 
+    </td>
+  <!--  <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    </td> -->
+</tr>
 }
 
 </table>

@@ -27,7 +27,12 @@ namespace LocalsScout.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Reklama5_Lokal> Reklama5_Lokali { get; set; }
+
         public DbSet<Lokal> Lokali { get; set; }
+
+        public DbSet<ApplicationUserReklama5_Lokal> Izbrani_lokali { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

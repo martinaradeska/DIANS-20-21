@@ -4,9 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using LocalsScout.Models;
+using Microsoft.AspNet.Identity;
 
 namespace LocalsScout.Controllers
 {
@@ -14,10 +16,99 @@ namespace LocalsScout.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Reklama5_Lokal
         public ActionResult Index()
         {
-            return View(db.Reklama5_Lokali.ToList());
+            var lista_lokali = db.Izbrani_lokali.ToList();
+
+            var user_id= HttpContext.User.Identity.GetUserId();
+            var izbrani_lokali = new  List<int>();
+
+            foreach (var lokal in lista_lokali) {
+                if (lokal.ApplicationUser_Id == user_id)
+                {
+                    izbrani_lokali.Add(lokal.Reklama5_Lokal_ID);
+                }
+                else
+                    continue;
+             }
+
+            var lokali_za_prikaz = new  List<Reklama5_Lokal>();
+            var lokali_5 = db.Reklama5_Lokali.ToList();
+
+            foreach (var lokal in lokali_5)
+            {
+                var ne_izbran = true;
+                foreach(var idto in izbrani_lokali)
+                {
+                    if(lokal.ID == idto)
+                    {
+                        ne_izbran = false;
+                    }
+                }
+                if (ne_izbran)
+                {
+                    lokali_za_prikaz.Add(lokal);
+                }
+            }
+            ViewBag.reklama_5 = lokali_5.Count();
+            ViewBag.dolzina = lokali_5.Count() - lokali_za_prikaz.Count();
+            return View(lokali_za_prikaz);
+        }
+
+        public ActionResult DodadiLokal(int id)
+        {
+            var user_id = HttpContext.User.Identity.GetUserId();
+            ApplicationUserReklama5_Lokal nov = new ApplicationUserReklama5_Lokal { ApplicationUser_Id = user_id, Reklama5_Lokal_ID = id };
+            var lokalce = db.Izbrani_lokali.Add(nov);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Reklama5_Lokal");
+        }
+        public ActionResult Izbrisi()
+        {
+            var lista_lokali = db.Izbrani_lokali.ToList();
+
+            var user_id = HttpContext.User.Identity.GetUserId();
+            var izbrani_lokali = new List<int>();
+
+            foreach (var lokal in lista_lokali)
+            {
+                if (lokal.ApplicationUser_Id == user_id)
+                {
+                    izbrani_lokali.Add(lokal.Reklama5_Lokal_ID);
+                }
+                else
+                    continue;
+            }
+
+            var lokali_za_prikaz = new List<Reklama5_Lokal>();
+            var lokali_5 = db.Reklama5_Lokali.ToList();
+
+            foreach (var lokal in lokali_5)
+            {
+                var izbran = false;
+                foreach (var idto in izbrani_lokali)
+                {
+                    if (lokal.ID == idto)
+                    {
+                        izbran = true;
+                        break;
+                    }
+                }
+                if (izbran)
+                {
+                    lokali_za_prikaz.Add(lokal);
+                }
+            }
+            return View(lokali_za_prikaz);
+        }
+
+        public ActionResult IzbrisiLokal(int id)
+        {
+            var user_id = HttpContext.User.Identity.GetUserId();
+            var za_brisenje = db.Izbrani_lokali.Find(user_id, id);
+            db.Izbrani_lokali.Remove(za_brisenje);
+            db.SaveChanges();
+            return RedirectToAction("Izbrisi", "Reklama5_Lokal");
         }
 
         // GET: Reklama5_Lokal/Details/5
