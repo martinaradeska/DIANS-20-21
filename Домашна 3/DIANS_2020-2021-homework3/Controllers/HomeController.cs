@@ -9,23 +9,19 @@ namespace LocalsScout.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
+        //returns Home Page  
         public ActionResult Index()
         {
             return View();
         }
 
+        //returns view for information about the project
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "About";
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

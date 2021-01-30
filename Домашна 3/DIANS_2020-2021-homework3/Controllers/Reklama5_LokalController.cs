@@ -16,6 +16,9 @@ namespace LocalsScout.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /*returns view where are shown all lokals from Reklama5, the number of Reklama5_lokals and the 
+         * number of user's chosen Reklama5_lokals
+        */
         public ActionResult Index()
         {
             var lista_lokali = db.Izbrani_lokali.ToList();
@@ -55,6 +58,7 @@ namespace LocalsScout.Controllers
             return View(lokali_za_prikaz);
         }
 
+        //adds Reklama5_lokal to the chosen Reklama5_lokals by the user
         public ActionResult DodadiLokal(int id)
         {
             var user_id = HttpContext.User.Identity.GetUserId();
@@ -63,6 +67,8 @@ namespace LocalsScout.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Reklama5_Lokal");
         }
+
+        //returns view where the user can see his chosen Reklama5_lokals
         public ActionResult Izbrisi()
         {
             var lista_lokali = db.Izbrani_lokali.ToList();
@@ -102,6 +108,7 @@ namespace LocalsScout.Controllers
             return View(lokali_za_prikaz);
         }
 
+        //deletes Reklama5_lokal from the the chosen Reklama5_lokals by the user
         public ActionResult IzbrisiLokal(int id)
         {
             var user_id = HttpContext.User.Identity.GetUserId();
@@ -112,6 +119,12 @@ namespace LocalsScout.Controllers
         }
 
         // GET: Reklama5_Lokal/Details/5
+        /*returns view with details about the chosen Reklama5_lokal where Reklama5_lokal's id is url's parametar 
+         * input: null
+         * output: bad request
+         * input: integer
+         * output: if found in db.Reklama5_Lokali returns View(lokal), else HttpNotFound()
+        */
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -127,15 +140,14 @@ namespace LocalsScout.Controllers
         }
 
         // GET: Reklama5_Lokal/Create
+        //returns view where the admin can create new Reklama5_Lokal
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Reklama5_Lokal/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //creates new lokal and adds it to db.Reklama5_Lokali
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,Kvadratura,Longitude,Latitude,Tel,Tip_oglas,Cena")] Reklama5_Lokal reklama5_Lokal)
@@ -151,6 +163,12 @@ namespace LocalsScout.Controllers
         }
 
         // GET: Reklama5_Lokal/Edit/5
+        /*returns view where the admin can edit the Reklama5_Lokal where Reklama5_Lokali's id is url's parametar 
+         * input: null
+         * output: bad request
+         * input: integer
+         * output: if found in db.Reklama5_Lokali returns View(lokal), else HttpNotFound()
+        */
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
@@ -167,8 +185,7 @@ namespace LocalsScout.Controllers
         }
 
         // POST: Reklama5_Lokal/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //changes to the Reklama5_lokal where Reklama5_lokal's id is url's parametar 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,Kvadratura,Longitude,Latitude,Tel,Tip_oglas,Cena")] Reklama5_Lokal reklama5_Lokal)
@@ -183,6 +200,12 @@ namespace LocalsScout.Controllers
         }
 
         // GET: Reklama5_Lokal/Delete/5
+        /*returns view where the admin can delete the Reklama5_lokal where Reklama5_Lokal's id is url's parametar 
+         * input: null
+         * output: bad request
+         * input: integer
+         * output: if found in db.Reklama5_Lokali returns View(lokal), else HttpNotFound()
+        */
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
@@ -199,6 +222,7 @@ namespace LocalsScout.Controllers
         }
 
         // POST: Reklama5_Lokal/Delete/5
+        //deletion of the Reklama5_Lokali where Reklama5_Lokal's id is url's parametar 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
