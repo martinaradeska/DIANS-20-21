@@ -1,72 +1,91 @@
 ﻿@model IEnumerable<LocalsScout.Models.Reklama5_Lokal>
 
 @{
-    ViewBag.Title = "Reklama5 Lokals";
+    ViewBag.Title = "Reklama5 Локали";
 }
 
-<h2>Локали што се издаваат и продаваат во Скопје</h2>
-<h4>Вкупниот број на локали е @ViewBag.reklama_5, а вие имате избрано @ViewBag.dolzina</h4>
-<p>
-    @Html.ActionLink("Избриши избрани локали", "Izbrisi")
-</p>
-<table class="table">
+<html>
+<head>
+    <style type="text/css">
+    .map_css
+    {
+        background: url('@Url.Content("Pictures/map_img.gif")') no-repeat scroll left;
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+    }
+    </style>
+</head>
+<body>
+    <h2>Локали што се издаваат и продаваат во Скопје</h2>
+    <h4>Вкупниот број на локали е @ViewBag.reklama_5, а вие имате избрано @ViewBag.dolzina</h4>
+    <p>
+        @Html.ActionLink("Избриши избрани локали", "Izbrisi")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Име
+            </th>
+            <th>
+                Квадратура
+            </th>
+            <th>
+                Географска должина
+            </th>
+            <th>
+                Географска ширина
+            </th>
+            <th>
+                Телефонски број
+            </th>
+            <th>
+                Тип на оглас
+            </th>
+            <th>
+                Цена
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kvadratura)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tip_oglas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cena)
-        </th>
-        <th></th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kvadratura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tip_oglas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cena)
+        </td>
+        <td>
+            @Html.ActionLink("ИЗБЕРИ ЛОКАЛ", "DodadiLokal", new { id = item.ID })
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "map_css", title = "Map" })
+        </td>
+        <!--  <td>
+          @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+          @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+          @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+      </td> -->
     </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Kvadratura)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Longitude)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Latitude)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Tel)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Tip_oglas)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Cena)
-    </td>
-    <td>
-        @Html.ActionLink("ИЗБЕРИ ЛОКАЛ", "DodadiLokal", new { id = item.ID }) 
-    </td>
-  <!--  <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-    </td> -->
-</tr>
-}
-
-</table>
+        }
+    </table>
+    </body>
+</html>
