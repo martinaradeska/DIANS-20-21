@@ -15,12 +15,17 @@ namespace LocalsScout.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        // The UserManager is used to manage users from the persistent store i.e. database
+        //SignInManager class is used to manager APIs for user Sign In
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
         }
+
+        /*The constructor of the controller class is injected with the UserManager and SignInManager dependencies.
+          These dependencies will be registered in future steps.*/
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -52,8 +57,8 @@ namespace LocalsScout.Controllers
             }
         }
 
-        //
-        // GET: /Account/Login
+        
+        //  The HttpGet Login() method which responds with a Login View.
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -63,6 +68,10 @@ namespace LocalsScout.Controllers
 
         //
         // POST: /Account/Login
+        /*
+         * The Login() HttpPost method is used for the model containing the Email and password
+         * If the Login is successful, then it will redirect to the page from which the request for Login initiated
+         */
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -134,8 +143,8 @@ namespace LocalsScout.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
+        
+        // Step for responding with the Register view
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -143,7 +152,11 @@ namespace LocalsScout.Controllers
         }
 
         //
-        // POST: /Account/Register
+        /*
+         HttpPost Register method which accepts the Register model object. This method will create an application method by
+         using CreateAsync() method of the SignInManager class. 
+         If the user is registered successfully then the user will be signed using SignAsync() method of the UserManager class.
+         */
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -158,19 +171,12 @@ namespace LocalsScout.Controllers
                 {
                     await UserManager.AddToRoleAsync(user.Id, "User");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -210,16 +216,9 @@ namespace LocalsScout.Controllers
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }
-
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -389,6 +388,7 @@ namespace LocalsScout.Controllers
 
         //
         // POST: /Account/LogOff
+        //The LogOff () method
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -444,7 +444,7 @@ namespace LocalsScout.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-
+        //A private method to redirect to the url from where the login request initiated.
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
