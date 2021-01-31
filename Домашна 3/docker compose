@@ -1,0 +1,63 @@
+========== Pulling Images ==========
+Pulling missing Docker images. To cancel this download, close the command prompt window. To disable image auto-pull, see Tools > Options > Container Tools.
+docker pull mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
+docker pull completed
+========== Preparing Containers ==========
+Getting Docker containers ready...
+docker-compose  -f "C:\Users\user\Desktop\DIANS_2020-2021-newbranch\Domasna 3\DIANS_2020-2021-homework3\docker-compose.yml" -f "C:\Users\user\Desktop\DIANS_2020-2021-newbranch\Domasna 3\DIANS_2020-2021-homework3\docker-compose.override.yml" -f "C:\Users\user\Desktop\DIANS_2020-2021-newbranch\Domasna 3\DIANS_2020-2021-homework3\obj\Docker\docker-compose.vs.debug.g.yml" -p dockercompose1999788765728692250 --no-ansi config
+services:
+  localsscout:
+    build:
+      args:
+        source: obj/Docker/empty/
+      context: C:\Users\user\Desktop\DIANS_2020-2021-newbranch\Domasna 3\DIANS_2020-2021-homework3
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: LocalsScout
+    container_name: LocalsScout
+    entrypoint: cmd /c "start /B C:\\ServiceMonitor.exe w3svc & C:\\remote_debugger\\x64\\msvsmon.exe
+      /noauth /anyuser /silent /nostatus /noclrwarn /nosecuritywarn /nofirewallwarn
+      /nowowwarn /timeout:2147483646"
+    environment:
+      DEV_ENVIRONMENT: '1'
+      VBCSCOMPILER_TTL: '604800'
+    image: localsscout:dev
+    ports:
+    - target: 80
+    volumes:
+    - C:\Users\user\Desktop\DIANS_2020-2021-newbranch\Domasna 3\DIANS_2020-2021-homework3:C:\inetpub\wwwroot:rw
+    - C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Remote
+      Debugger:C:\remote_debugger:ro
+version: '3.4'
+docker-compose  -f "C:\Users\user\Desktop\DIANS_2020-2021-newbranch\Domasna 3\DIANS_2020-2021-homework3\docker-compose.yml" -f "C:\Users\user\Desktop\DIANS_2020-2021-newbranch\Domasna 3\DIANS_2020-2021-homework3\docker-compose.override.yml" -f "C:\Users\user\Desktop\DIANS_2020-2021-newbranch\Domasna 3\DIANS_2020-2021-homework3\obj\Docker\docker-compose.vs.debug.g.yml" -p dockercompose1999788765728692250 --no-ansi build 
+Building localsscout
+Step 1/6 : FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
+ ---> 247ed4d65c50
+Step 2/6 : ARG source
+ ---> Running in 5879c9c34729
+Removing intermediate container 5879c9c34729
+ ---> 94cbe2dc5747
+Step 3/6 : WORKDIR /inetpub/wwwroot
+ ---> Running in 1b2c7119cf52
+Removing intermediate container 1b2c7119cf52
+ ---> 437a98fbbfca
+Step 4/6 : COPY ${source:-obj/Docker/publish} .
+ ---> bd553bcc2f9c
+Step 5/6 : LABEL com.microsoft.created-by=visual-studio
+ ---> Running in c242b0af9316
+Removing intermediate container c242b0af9316
+ ---> f4f5e908e601
+Step 6/6 : LABEL com.microsoft.visual-studio.project-name=LocalsScout
+ ---> Running in 5adf8375bee4
+Removing intermediate container 5adf8375bee4
+ ---> d4760857940c
+Successfully built d4760857940c
+Successfully tagged localsscout:dev
+Done!  Docker containers are ready.
+========== Debugging ==========
+docker ps --filter "status=running" --filter "label=com.docker.compose.service" --filter "name=^/LocalsScout$" --format {{.ID}} -n 1
+ee46885d2797
+docker inspect --format="{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}" ee46885d2797
+172.18.211.97
+Launching http://172.18.211.97/ ...
